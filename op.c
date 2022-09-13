@@ -6,21 +6,13 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:54:03 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/08 14:49:32 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/13 13:38:29 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
 // index == 0 -> a , index == 1 -> b
-typedef struct s_num
-{
-	int				value;
-	struct s_num	*next;
-}	t_num;
 
 t_num	*last_node(t_num *list)
 {
@@ -140,35 +132,4 @@ void	op_swap(t_num **list, int index)
 		write(1, "sa\n", 3);
 	else if (index == 1)
 		write(1, "sb\n", 3);
-}
-
-int main(int argc, char **argv)
-{
-	t_num	*a;
-	t_num	*b;
-	int		i;
-
-	if (argc == 1)
-		return (0);
-	a = NULL;
-	b = NULL;
-	i = argc - 1;
-	while (i > 0)
-	{
-		push_num(&a, atoi(argv[i]));
-		i--;
-	}
-	op_rrot(&a, 1);
-	op_push(&a, &b, 1);
-	while (a)
-	{
-		printf("a = %d\n", a->value);
-		a = a->next;
-	}
-	while (b)
-	{
-		printf("b = %d\n", b->value);
-		b = b->next;
-	}
-	//printf("a top3 :%d\n", a->next->next->value);
 }
