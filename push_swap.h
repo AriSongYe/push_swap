@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:34:54 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/13 13:37:33 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:34:57 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ typedef struct s_num
 	struct s_num	*next;
 }	t_num;
 
-void	op_swap(t_num **list, int index);
-void	op_swap_ss(t_num **list_1, t_num **list_2);
-void	op_push(t_num **list_1, t_num **list_2, int index);
-void	op_rr(t_num **list_1, t_num **list_2);
-void	op_rrot(t_num **list, int index);
-void	op_rot(t_num **list, int index);
-void	push_num(t_num **list, int value);
+void	first_push(t_num **list, int value);
+void	push(t_num **list_1, t_num **list_2);
+void	op_push(t_num **a, t_num **b, int is_a);
+void	op_swap_ss(t_num **a, t_num **b);
+void	op_swap(t_num **a, int is_a);
+void	op_r_rot(t_num **a, int is_a);
+void	op_rot(t_num **a, int is_a);
+void	op_rr(t_num **a, t_num **b);
+void	op_rrr(t_num **a, t_num **b);
+t_num	*pop(t_num **list);
 t_num	*last_node(t_num *list);
 #endif

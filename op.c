@@ -1,18 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_pracitce_struct.c                            :+:      :+:    :+:   */
+/*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:54:03 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/13 13:38:29 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/15 16:34:27 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// index == 0 -> a , index == 1 -> b
+// pop function return struct
+t_num	*pop(t_num **list)
+{
+	t_num	*node;
+
+	node = *list;
+	if (!node)
+		return (NULL);
+	*list = node->next;
+	return (node);
+}
+
+// push function return pop's struct
+void	push(t_num **list, t_num **put)
+{
+	if (!(*put))
+		return ;
+	if (!(*list))
+	{
+		(*put)->next = NULL;
+		*list = *put;
+	}
+	else
+	{
+		(*put)->next = (*list);
+		*list = *put;
+	}
+}
+
 
 t_num	*last_node(t_num *list)
 {
@@ -26,110 +54,155 @@ t_num	*last_node(t_num *list)
 	return (temp);
 }
 
-void	push_num(t_num **list, int value)
+void	op_rrr(t_num **a, t_num **b)
+{
+	t_num	*last;
+	t_num	*temp;
+
+	if (!*a || !*b || !(*a)->next || !(*b)->next)
+		return ;
+	temp = *a;
+	last = last_node(*a);
+	while (temp->next != last)
+		temp = temp->next;
+	temp->next = NULL;
+	push(a, &last);
+	temp = *b;
+	last = last_node(*b);
+	while (temp->next != last)
+		temp = temp->next;
+	temp->next = NULL;
+	push(b, &last);
+}
+
+void	op_r_rot(t_num **a, int is_a)
+{
+	t_num	*last;
+	t_num	*temp;
+
+	temp = *a;
+	if (*a)
+	{
+		last = last_node(*a);
+		while (temp->next != last)
+			temp = temp->next;
+		temp->next = NULL;
+		push(a, &last);
+		if (!is_a)
+			write(1, "rrb\n", 4);
+		else
+			write(1, "rra\n", 4);
+	}
+}
+
+void	op_rr(t_num **a, t_num **b)
+{
+	t_num	*temp;
+	t_num	*last;
+	
+	if (!*a || !*b || !(*a)->next || !(*b)->next)
+		return ;
+	temp = pop(a);
+	last = last_node(*a);
+	last->next = temp;
+	temp->next = NULL;
+	temp = pop(b);
+	last = last_node(*b);
+	last->next = temp;
+	temp->next = NULL;
+	write(1, "rr\n", 3);
+}
+
+void	op_rot(t_num **a, int is_a)
+{
+	t_num	*temp_1;
+	t_num	*last;
+	
+	if (*a)
+	{
+		temp_1 = pop(a);
+		last = last_node(*a);
+		last->next = temp_1;
+		temp_1->next = NULL;
+		if (!is_a)
+			write(1, "rb\n", 3);
+		else
+			write(1, "ra\n", 3);
+	}
+}
+
+void	op_swap(t_num **a, int is_a)
+{
+	t_num	*temp_1;
+	t_num	*temp_2;
+
+	if (*a)
+	{
+		temp_1 = pop(a);
+		temp_2 = pop(a);
+		push(a, &temp_1);
+		push(a, &temp_2);
+		if (!is_a)
+			write(1, "sb\n", 3);
+		else
+			write(1, "sa\n", 3);
+	}
+
+}
+
+void	op_swap_ss(t_num **a, t_num **b)
+{
+	t_num	*temp_1;
+	t_num	*temp_2;
+
+	if (!*a || !*b || !(*a)->next || !(*b)->next)
+		return ;
+	temp_1 = pop(a);
+	temp_2 = pop(a);
+	push(a, &temp_1);
+	push(a, &temp_2);
+	temp_1 = pop(b);
+	temp_2 = pop(b);
+	push(b, &temp_1);
+	push(b, &temp_2);
+	write(1, "ss\n", 3);
+}
+
+void	op_push(t_num **a, t_num **b, int is_a)
+{
+	t_num	*temp;
+
+	if (!is_a && (*a))
+	{
+		temp = pop(a);
+		push(b, &temp);
+		write(1, "pb\n", 3);
+	}
+	else if (is_a && (*b))
+	{
+		temp = pop(b);
+		push(a, &temp);
+		write(1, "pa\n", 3);
+	}
+}
+
+void	first_push(t_num **list, int value)
 {
 	t_num	*node;
 
 	node = malloc(sizeof(t_num));
 	if (!node)
 		return ;
-	node->value = value;
-	node->next = *list;
-	*list = node;
-}
-
-void	op_rot(t_num **list, int index)
-{
-	t_num	*node;
-	t_num	*last;
-
-	node = *list;
-	last = last_node(*list);
-	*list = node->next;
-	last->next = node;
-	node->next = NULL;
-	if (index == 0)
-		write(1, "ra\n", 3);
-	else
-		write(1, "rb\n", 3);
-}
-void	op_rrot(t_num **list, int index)
-{
-	t_num	*node;
-	t_num	*last;
-
-	node = *list;
-	last = last_node(*list);
-	last->next = node;
-	*list = last;
-	while (node->next != *list)
-		node = node->next;
-	node->next = NULL;
-	if (index == 0)
-		write(1, "rra\n", 4);
-	else if (index == 1)
-		write(1, "rrb\n", 4);
-	else
-		;
-}
-
-void	op_rr(t_num **list_1, t_num **list_2)
-{
-	op_rrot(list_1, 3);
-	op_rrot(list_2, 3);
-	write(1, "rr\n", 3);
-}
-
-void	op_push(t_num **list_1, t_num **list_2, int index)
-{
-	t_num	*node_1;
-	t_num	*node_2;
-
-		node_1 = *list_1;
-		node_2 = *list_2;
-	if (index == 0)
+	if (*list == NULL)
 	{
-		*list_2 = node_2->next;
-		node_2->next = node_1;
-		*list_1 = node_2;
-		write(1, "pa\n", 3);
+		node->value = value;
+		node->next = NULL;
+		*list = node;
 	}
-	else if (index == 1)
+	else
 	{
-		*list_1 = node_1->next;
-		node_1->next = node_2;
-		*list_2 = node_1;
-		write(1, "pb\n", 3);
+		node->value = value;
+		node->next = *list;
+		*list = node;
 	}
-}
-
-void	op_swap_ss(t_num **list_1, t_num **list_2)
-{
-	t_num	*node;
-	int		temp;
-
-	node = *list_1;
-	temp = node->value;
-	node->value = node->next->value;
-	node->next->value = temp;
-	node = *list_2;
-	temp = node->value;
-	node->value = node->next->value;
-	node->next->value = temp;
-	write(1, "ss\n", 3);
-}
-
-void	op_swap(t_num **list, int index)
-{
-	t_num	*node;
-	int		temp;
-
-	node = *list;
-	temp = node->value;
-	node->value = node->next->value;
-	node->next->value = temp;
-	if (index == 0)
-		write(1, "sa\n", 3);
-	else if (index == 1)
-		write(1, "sb\n", 3);
 }

@@ -6,61 +6,37 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 13:34:22 by yecsong           #+#    #+#             */
-/*   Updated: 2022/09/15 17:12:55 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/09/13 14:00:27 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		struct_len(t_num **a)
-{
-	t_num	*node;
-
-	node = *a;
-	int	i;
-
-	i = 0;
-	if (!node)
-		return (0);
-	while (node)
-	{
-		node = node->next;
-		i++;
-	}
-	return (i);
-}
 void	bubble_sort(t_num **a, t_num **b)
 {
-	int	len;
-	int	i;
+	t_num	*a_stack;
+	t_num	*b_stack;
 
-	len = struct_len(a) -1;
-	while (len)
+	a_stack = *a;
+	b_stack = *b;
+
+	while (!a_stack)
 	{
-		i = 0;
-		while (i < len)
+	op_swap(&a_stack, 1);
+		if (a_stack->value > a_stack->next->value)
 		{
-			if ((*a)->value < (*a)->next->value)
-				op_push(a, b, 0);
-			else
-			{
-				op_swap(a, 1);
-				op_push(a, b, 0);
-			}
-			i++;
+			op_push(&a_stack, &b_stack, 1);
 		}
-		i = 0;
-		while (i++ < len)
-			op_push(a, b ,1);
-		len--;
+		else
+			op_push(&a_stack, &b_stack, 1);
+		a_stack = a_stack->next;
 	}
+	
 }
-
 int main(int argc, char **argv)
 {
 	t_num	*a;
 	t_num	*b;
-
 	int		i;
 
 	if (argc == 1)
@@ -70,11 +46,11 @@ int main(int argc, char **argv)
 	i = argc - 1;
 	while (i > 0)
 	{
-		first_push(&a, atoi(argv[i]));
+		push_num(&a, atoi(argv[i]));
 		i--;
 	}
 	bubble_sort(&a, &b);
-	/*while (a)
+	while (a)
 	{
 		printf("a = %d\n", a->value);
 		a = a->next;
@@ -84,5 +60,4 @@ int main(int argc, char **argv)
 		printf("b = %d\n", b->value);
 		b = b->next;
 	}
-	*/
 }
