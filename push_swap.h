@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:02:49 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/26 18:04:48 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/27 14:18:50 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ typedef	struct	s_node
 
 typedef	struct	s_info
 {
-	t_node	*a_head;
-	t_node	*b_head;
+	t_node	*a;
+	t_node	*b;
+	int		argc;
+	char	**argv;
 }	t_info;
 
 #endif

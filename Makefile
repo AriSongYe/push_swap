@@ -6,17 +6,17 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/10/26 17:55:09 by yecsong          ###   ########.fr        #
+#    Updated: 2022/10/27 21:49:03 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := push_swap
 
-SRCS :=	main.c
+SRCS :=	push_swap2.c
 
 CC := cc
 
-CFLAGS := -Werror -Wextra -Wall 
+CFLAGS :=
 
 all : $(NAME)
 

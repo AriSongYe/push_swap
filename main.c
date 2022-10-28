@@ -6,11 +6,12 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:02:23 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/26 19:45:29 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/27 10:56:03 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void	a_to_b(t_node **a_node, t_node **b_node, t_info **info, int len);
 
 t_info *init_info()
 {
@@ -59,7 +60,7 @@ t_node	*init_node(int argc, char **argv)
 	i = argc - 2;
 	while (i > 0)
 	{
-		tmp = new_node(ft_atoi(argv[i]));
+		temp = new_node(ft_atoi(argv[i]));
 		last = last_node(a_node);
 		last->next = temp;
 		i--;
@@ -76,7 +77,7 @@ t_node	*pop(t_node **node, t_info **info, int is_a)
 		return (NULL);
 	else if (temp && temp->next == NULL)
 		*node = NULL;
-	else
+	else if (temp)
 		*node = temp->next;
 	if (is_a)
 		(*info)->a_head = *node;
@@ -171,6 +172,7 @@ void	ra(t_node **a_node, t_info **info)
 		temp = pop(a_node, info, 1);
 		last = last_node(*a_node);
 		last->next = temp;
+		temp->next = NULL;
 		write(1, "ra\n", 3);
 	}
 	else
@@ -190,6 +192,7 @@ void	rb(t_node **b_node, t_info **info)
 		temp = pop(b_node, info, 0);
 		last = last_node(*b_node);
 		last->next = temp;
+		temp->next = NULL;
 		write(1, "rb\n", 3);
 	}
 	else
@@ -362,37 +365,77 @@ int	find_min_max(t_node **a_node, int is_max)
 	else
 		return (min);
 }
+void	b_to_a(t_node **a_node, t_node **b_node, t_info **info, int len)
+{
+	int	i;
+	int	rb_cnt;
+	int	pa_cnt;
+	int	pivot;
 
+	if (len == 1)
+		return ;
+	i = 0;
+	pa_cnt = 0;
+	rb_cnt = 0;
+
+	pivot = last_node(*a_node)->value;
+	while (i < len)
+	{
+		if ((*info)->a_head->value >= pivot)
+		{
+			pa(&(*info)->b_head, &(*info)->a_head, info);
+			pa_cnt++;
+		}
+		else
+		{
+			rb(&(*info)->a_head, info);
+			rb_cnt++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i++ < rb_cnt)
+		rrb(&(*info)->b_head, info);
+	a_to_b(a_node, b_node, info, pa_cnt);
+	b_to_a(a_node, b_node, info, rb_cnt);
+}
 void	a_to_b(t_node **a_node, t_node **b_node, t_info **info, int len)
 {
 	int		i;
 	int		ra_cnt;
 	int		pb_cnt;
 	int		pivot;
-	t_node	*temp;
 
+	if (len == 1)
+		return ;
 	i = 0;
 	pb_cnt = 0;
 	ra_cnt = 0;
-	temp = *info->head;
-	pivot = (find_min_max(a_node, 1) + find_min_max(a_node, 0)) / 2;
-	while (i++ < len)
+	pivot = (find_min_max(&(*info)->a_head, 1) + find_min_max(&(*info)->a_head, 0)) / 2;
+	while (i < len)
 	{
-		if (temp->value < pivot)
+		if ((*info)->a_head->value <= pivot)
 		{
-			pb(a_node, b_node, info);
+			pb(&(*info)->a_head, &(*info)->b_head, info);
 			pb_cnt++;
 		}
 		else
 		{
-			ra(a_node, info);
+			ra(&(*info)->a_head, info);
 			ra_cnt++;
 		}
+		i++;
 	}
 	i = 0;
 	while (i++ < ra_cnt)
 		rra(a_node, info);
+	a_to_b(a_node, b_node, info, ra_cnt);
+	b_to_a(a_node, b_node, info, pb_cnt);
 }
+
+
+
+
 int main(int argc, char **argv)
 {
 	t_node	*a_node;
@@ -403,17 +446,19 @@ int main(int argc, char **argv)
 	a_node = init_node(argc, argv);
 	b_node = NULL;
 
-
-	//a_info->head = a_node;
-	printf("node = %d\n", a_node->value);
-	printf("node = %d\n", a_node->next->value);
-	printf("node = %d\n", a_node->next->next->value);
-	//printf("node = %d\n", a_node->next->next->value);
-	pb(&a_node, &b_node, &info);
-	printf("node = %d\n", a_node->value);
-	printf("node = %d\n", b_node->value);
-	printf("node = %d\n", info->a_head->value);
-	printf("node = %d\n", info->b_head->value);
-	printf("node = %d\n", a_node->next->value);
-	printf("len = %d\n", node_len(a_node));
+	info->a_head = a_node;
+	info->b_head = NULL;
+	a_to_b(&a_node, &b_node, &info, node_len(a_node));
+	/*
+	while (a_node)
+	{
+		printf("a = %d\n", a_node->value);
+		a_node = a_node->next;
+	}
+	*/
+	while (b_node)
+	{
+		printf("b = %d\n", a_node->value);
+		a_node = a_node->next;
+	}
 }
