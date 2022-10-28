@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:30:26 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/28 17:35:49 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/28 17:55:23 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int	check_valid_num(t_info **info)
 	return (0);
 }
 
-int	get_size_num(t_info **info)
+int	get_order_size(t_info **info)
 {
 	int	i;
 	int	j;
@@ -167,23 +167,33 @@ int	get_size_num(t_info **info)
 	}
 	return (index);
 }
+
+int	get_first_index(t_info **info)
+{
+	int	i;
+	
+	i = 0;
+	while((*info)->str[i])
+		i++;
+	return(i);
+}
 void	parsing_num(t_info **info)
 {
 	int	i;
 	int	j;
 	int	index;
 
-	(*info)->order = malloc(sizeof(int) * get_size_num(info));
+	(*info)->order = malloc(sizeof(int) * get_order_size(info));
 	index = 0;
 	i = 1;
 	while (i < (*info)->argc)
 	{
-		(*info)->str = ft_split((*info)->argv[i], ' ');
-		j = 0;
-		while ((*info)->str[j])
+		(*info)->str = ft_split((*info)->argv[(*info)->argc - i], ' ');
+		j = get_first_index(info) - 1;
+		while (j >= 0)
 		{
 			(*info)->order[index++] = ft_atoi((*info)->str[j]);
-			j++;
+			j--;
 		}
 		free_dptr((*info)->str);
 		i++;
@@ -201,5 +211,8 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	parsing_num(&info);
-	system("leaks push_swap");
+	int	i;
+	i = 0;
+	while (info->order[i])
+		printf("order %d\n", info->order[i++]);
 }
