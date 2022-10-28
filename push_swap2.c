@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 17:02:16 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/27 22:54:26 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/28 14:30:15 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_info *init_info(int argc, char **argv)
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (NULL);
-	info->argc = argc;
+	info->argc = 0;
 	info->argv = argv;
 	info->a = NULL;
 	info->b = NULL;
@@ -306,17 +306,26 @@ void	rrr(t_info **info)
 	write (1, "rrr\n", 4);
 }
 
-void	order_number(int *order, int argc, char **argv)
+void	order_number(int *order, int argc, char **argv, t_info **info)
 {
 	int	i;
 	int	j;
 	int	cnt;
 	int	stack[argc - 1];
+	char **temp;
+	int	good;
 
+	good = 0;
+	temp = ft_split(argv[1], '0');
+	i = 0;
+	while (i < 5)
+		printf("%s\n", temp[i++]);
+	i = 0;
+	(*info)->argc = good;
 	i = 0;
 	while (i < argc - 1)
 	{
-		stack[i] = ft_atoi(argv[argc - i - 1]);
+		stack[i] = ft_atoi(temp[argc - 1 - i]);
 		i++;
 	}
 	i = 0;
@@ -334,17 +343,31 @@ void	order_number(int *order, int argc, char **argv)
 	}
 }
 
-int	node_len(t_node *node, int argc)
+
+
+int	node_len(t_node *node)
 {
 	int	i;
 	
 	i = 0;
-	while (node->value != argc)
+	while (node)
 	{
 		node = node->next;
 		i++;
 	}
-	printf("node_len = %d\n", i);
+	return (i);
+}
+
+int	len_is_r(t_node *node, int value)
+{
+	int	i;
+
+	i = 0;
+	while (node->value != value)
+	{
+		node = node->next;
+		i++;
+	}
 	return (i);
 }
 
@@ -352,66 +375,67 @@ int	main(int argc, char **argv)
 {
 	t_info	*info;
 	int	*order;
+	int i;
 
+	if (argc != 2)
+	{
+		write(2, "Error : argc is not enough", 30);
+		return (-1);
+	}
 	info = init_info(argc, argv);
 	order = malloc(sizeof(int) * argc - 1);
-	order_number(order, argc, argv);
+	order_number(order, argc, argv, &info);
+	i = 0;
+	while (i++ < info->argc)
+		printf("%d\n", order[i]);
+	
+	/*
+	i = 0;
+	t_node *node;
+	node = info->a;
 	init_node(&info, order);
-	int i;
 	int	chunk;
 	
 	chunk = 30;
 	i = 0;
-	while (info->a)
+	while (node)
+	{
+		printf ("first node = %d\n", node->value);
+		node =node->next;
+	}
+	while (node_len(info->a))
 	{
 		if (info->a->value > i + chunk)
 			ra(&info);
-		else if (info->a->value >= i && info->a->value < i + chunk)
+		else if (info->a->value > i && info->a->value <= i + chunk)
 		{
 			pb(&info);
+			rb(&info);
 			i++;
 		}
 		else if (info->a->value <= i)
 		{
 			pb(&info);
-			rb(&info);
 			i++;
 		}
 	}
-	t_node *node;
-	node = info->b;
-	/*
-	while (node)
-	{
-		printf("%d\n", node->value);
-		node = node->next;
-	}
-	*/
 	info->argc--;
 	info->argc--;
-	int	signal;
 
-	signal = 0;
+	int	len;
 	while (info->argc != -1)
 	{
-//		if (node_len(info->b,info->argc) < info->argc / 2)
-//			signal = 1;
+		len = len_is_r(info->b, info->argc);
 		if (info->argc == info->b->value)
 		{
 			pa(&info);
 			info->argc--;
 		}
-		else if (signal)
+		else if (len < info->argc / 2)
 			rb(&info);
-		else if (!signal)
+		else if (len >= info->argc / 2)
 			rrb(&info);
 	}
 	node = info->a;
-	/*
-	while (node)
-	{
-		printf("%d\n", node->value);
-		node = node->next;
-	}
 	*/
 }
