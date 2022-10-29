@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 17:02:16 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/28 17:55:41 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:25:27 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -389,7 +389,6 @@ int	main(int argc, char **argv)
 	while (i++ < info->argc)
 		printf("%d\n", order[i]);
 	
-	/*
 	i = 0;
 	t_node *node;
 	node = info->a;
@@ -398,11 +397,6 @@ int	main(int argc, char **argv)
 	
 	chunk = 30;
 	i = 0;
-	while (node)
-	{
-		printf ("first node = %d\n", node->value);
-		node =node->next;
-	}
 	while (node_len(info->a))
 	{
 		if (info->a->value > i + chunk)
@@ -419,8 +413,6 @@ int	main(int argc, char **argv)
 			i++;
 		}
 	}
-	info->argc--;
-	info->argc--;
 
 	int	len;
 	while (info->argc != -1)
@@ -436,6 +428,4 @@ int	main(int argc, char **argv)
 		else if (len >= info->argc / 2)
 			rrb(&info);
 	}
-	node = info->a;
-	*/
 }

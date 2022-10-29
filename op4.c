@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:15:59 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/29 11:17:06 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/10/29 12:14:14 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_node(t_info **info, int *order)
 	i = 1;
 	a = new_node(order[0]);
 	(*info)->a = a;
-	while (i < (*info)->argc - 1)
+	while (i < (*info)->argc)
 	{
 		new = new_node(order[i]);
 		last = last_node(a);
