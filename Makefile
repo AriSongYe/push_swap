@@ -6,24 +6,24 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/10/29 12:01:53 by yecsong          ###   ########.fr        #
+#    Updated: 2022/11/02 15:55:25 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := push_swap
 
-SRCS :=	push_swap3.c\
-		check_valid_num.c\
-		parsing.c\
-		util.c\
-		op1.c\
-		op2.c\
-		op3.c\
-		op4.c\
+SRCS :=	mandatory/main.c\
+		mandatory/check_valid_num.c\
+		mandatory/parsing.c\
+		mandatory/util.c\
+		mandatory/op1.c\
+		mandatory/op2.c\
+		mandatory/op3.c\
+		mandatory/op4.c\
 
 CC := cc
 
-CFLAGS :=
+CFLAGS := -Wall -Werror -Wextra
 
 all : $(NAME)
 
