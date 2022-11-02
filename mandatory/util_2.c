@@ -1,16 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op4.c                                              :+:      :+:    :+:   */
+/*   util_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 11:15:59 by yecsong           #+#    #+#             */
-/*   Updated: 2022/10/31 16:56:31 by yecsong          ###   ########.fr       */
+/*   Created: 2022/11/02 16:34:44 by yecsong           #+#    #+#             */
+/*   Updated: 2022/11/02 17:13:48 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	direction_a(t_node *node, int value)
+{
+	int	i;
+
+	i = 0;
+	while (node->value > value)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
+}
+
+int	direction_b(t_node *node, int value)
+{
+	int	i;
+
+	i = 0;
+	while (node->value != value)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
+}
 
 t_node	*new_node(int value)
 {
@@ -50,22 +76,4 @@ void	init_node(t_info **info, int *order)
 		last->next = new;
 		i++;
 	}
-}
-
-t_node	*pop_a(t_info **info)
-{
-	t_node	*node;
-
-	node = (*info)->a;
-	if (!(*info)->a)
-		return (NULL);
-	else if ((*info)->a)
-	{
-		if (!(*info)->a->next)
-			(*info)->a = NULL;
-		else
-			(*info)->a = node->next;
-		node->next = NULL;
-	}
-	return (node);
 }

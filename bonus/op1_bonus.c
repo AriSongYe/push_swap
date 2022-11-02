@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op1.c                                              :+:      :+:    :+:   */
+/*   op1_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:13:52 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 17:14:31 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:13:15 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	rr(t_info **info)
 {
@@ -23,7 +23,6 @@ void	rr(t_info **info)
 	node = (*info)->b;
 	pop = pop_b(info);
 	push_back(info, &pop, 0);
-	write (1, "rr\n", 3);
 }
 
 void	rra(t_info **info)
@@ -37,7 +36,6 @@ void	rra(t_info **info)
 	while (node->next != pop)
 		node = node->next;
 	node->next = NULL;
-	write (1, "rra\n", 4);
 }
 
 void	rrb(t_info **info)
@@ -51,7 +49,6 @@ void	rrb(t_info **info)
 	while (node->next != pop)
 		node = node->next;
 	node->next = NULL;
-	write (1, "rrb\n", 4);
 }
 
 void	rrr(t_info **info)
@@ -70,23 +67,4 @@ void	rrr(t_info **info)
 	node = (*info)->b;
 	while (node->next != pop)
 		node = node->next;
-	write (1, "rrr\n", 4);
-}
-
-t_node	*pop_a(t_info **info)
-{
-	t_node	*node;
-
-	node = (*info)->a;
-	if (!(*info)->a)
-		return (NULL);
-	else if ((*info)->a)
-	{
-		if (!(*info)->a->next)
-			(*info)->a = NULL;
-		else
-			(*info)->a = node->next;
-		node->next = NULL;
-	}
-	return (node);
 }

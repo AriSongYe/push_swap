@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op3.c                                              :+:      :+:    :+:   */
+/*   op3_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:15:19 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 17:14:05 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:13:52 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 t_node	*pop_b(t_info **info)
 {
@@ -83,7 +83,6 @@ void	sa(t_info **info)
 	temp_2 = pop_a(info);
 	push_front(info, &temp_1, 1);
 	push_front(info, &temp_2, 1);
-	write (1, "sa\n", 3);
 }
 
 void	sb(t_info **info)
@@ -95,5 +94,4 @@ void	sb(t_info **info)
 	temp_2 = pop_b(info);
 	push_front(info, &temp_1, 0);
 	push_front(info, &temp_2, 0);
-	write (1, "sb\n", 3);
 }

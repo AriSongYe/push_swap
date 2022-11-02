@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   util_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:05:07 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 17:14:58 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:09:53 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	free_dptr(char **ptr)
 {
@@ -46,6 +46,7 @@ int	is_sorted(t_info **info)
 	t_node	*node;
 
 	node = (*info)->a;
+
 	while (node->next)
 	{
 		if (node->value > node->next->value)

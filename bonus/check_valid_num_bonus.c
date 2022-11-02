@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_valid_num.c                                  :+:      :+:    :+:   */
+/*   check_valid_num_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 10:56:23 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 17:00:38 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 18:08:56 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	check_valid_num(t_info **info)
 {

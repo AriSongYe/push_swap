@@ -5,41 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/11/02 17:14:41 by yecsong          ###   ########.fr        #
+#    Created: 2022/11/02 20:06:16 by yecsong           #+#    #+#              #
+#    Updated: 2022/11/02 20:08:14 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := push_swap
+NAME := get_next_line.a
 
-SRCS :=	mandatory/main.c\
-		mandatory/check_valid_num.c\
-		mandatory/parsing.c\
-		mandatory/util.c\
-		mandatory/util_2.c\
-		mandatory/op1.c\
-		mandatory/op2.c\
-		mandatory/op3.c\
-		mandatory/a_few_num.c\
+SRCS := get_next_line.c\
+		get_next_line_utils.c\
 
-CC := cc
+OBJS = $(SRCS:%.c=%.o)
 
-CFLAGS := -Wall -Werror -Wextra
+$(NAME) : $(OBJS)
+	$(AR) $(ARFLAGS) $@ $?
 
 all : $(NAME)
 
-$(NAME) :
-	$(MAKE) -C ./libft/ all
-	$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o push_swap
-
-re : fclean all
+re :
+	make fclean
+	make all
 
 clean :
 	rm -f *.o
-	rm -f libft/*.o
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f libft/libft.a
 
 .PHONY : all clean fclean bonus re

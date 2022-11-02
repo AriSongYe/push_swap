@@ -6,21 +6,20 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/11/02 17:14:41 by yecsong          ###   ########.fr        #
+#    Updated: 2022/11/02 20:03:24 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := push_swap
+NAME := checker
 
-SRCS :=	mandatory/main.c\
-		mandatory/check_valid_num.c\
-		mandatory/parsing.c\
-		mandatory/util.c\
-		mandatory/util_2.c\
-		mandatory/op1.c\
-		mandatory/op2.c\
-		mandatory/op3.c\
-		mandatory/a_few_num.c\
+SRCS :=	check_valid_num_bonus.c\
+		op1_bonus.c\
+		op2_bonus.c\
+		op3_bonus.c\
+		op4_bonus.c\
+		parsing_bonus.c\
+		util_bonus.c\
+		checker.c
 
 CC := cc
 
@@ -29,17 +28,20 @@ CFLAGS := -Wall -Werror -Wextra
 all : $(NAME)
 
 $(NAME) :
-	$(MAKE) -C ./libft/ all
-	$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o push_swap
+	$(MAKE) -C ../libft/ all
+	$(MAKE) -C ./get_next_line/ all
+	$(CC) $(CFLAGS) $(SRCS) ./get_next_line/get_next_line.a ../libft/libft.a -o checker
 
 re : fclean all
 
 clean :
 	rm -f *.o
-	rm -f libft/*.o
+	rm -f ../libft/*.o
+	rm -f ./get_next_line/*.o
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f libft/libft.a
+	rm -f ../libft/libft.a
+	rm -f ./get_next_line/get_next_line.a
 
 .PHONY : all clean fclean bonus re
