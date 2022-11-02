@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:30:26 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 18:06:22 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:19:35 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,7 @@ int	main(int argc, char **argv)
 		a_to_b(&info);
 		b_to_a(&info);
 	}
+	t_node	*node;
+	node = info->a;
 }
+

@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:14:48 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 20:13:40 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 20:18:42 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ss(t_info **info)
 	temp_2 = pop_b(info);
 	push_front(info, &temp_1, 0);
 	push_front(info, &temp_2, 0);
+	write(1, "ss\n", 3);
 }
 
 void	pb(t_info **info)
@@ -52,6 +53,7 @@ void	pa(t_info **info)
 	}
 	pop = pop_b(info);
 	push_front(info, &pop, 1);
+	write (1, "pa\n", 3);
 }
 
 void	ra(t_info **info)
@@ -67,6 +69,7 @@ void	ra(t_info **info)
 	node = (*info)->a;
 	pop = pop_a(info);
 	push_back(info, &pop, 1);
+	write (1, "ra\n", 3);
 }
 
 void	rb(t_info **info)
@@ -82,4 +85,5 @@ void	rb(t_info **info)
 	node = (*info)->b;
 	pop = pop_b(info);
 	push_back(info, &pop, 0);
+	write (1, "rb\n", 3);
 }

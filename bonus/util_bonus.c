@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 11:05:07 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 18:09:53 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/02 22:00:09 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	is_sorted(t_info **info)
 	t_node	*node;
 
 	node = (*info)->a;
-
 	while (node->next)
 	{
 		if (node->value > node->next->value)
