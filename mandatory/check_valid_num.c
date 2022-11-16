@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 10:56:23 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/16 14:55:25 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:11:46 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	check_valid_num(t_info **info)
 	get_order(info);
 	if (is_repeat(info))
 		return (1);
-	if ((*info)->stack_size <= 1)
-		return (1);
 	return (0);
 }
 
@@ -44,7 +42,7 @@ int	is_over(char **str)
 	i = 0;
 	while (str[i])
 	{
-		if (ft_strlen(str[i]) >= 11)
+		if (ft_strlen(str[i]) >= 12)
 		{
 			return (1);
 		}

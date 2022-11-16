@@ -6,7 +6,7 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/11/16 15:10:49 by yecsong          ###   ########.fr        #
+#    Updated: 2022/11/16 17:22:03 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,9 @@ SRCS_BONUS := bonus/check_valid_num_bonus.c\
 
 CC := cc
 
+OBJS = $(SRCS:%.c=%.o)
+OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
+
 CFLAGS := -Wall -Werror -Wextra
 
 all : $(NAME)
@@ -41,21 +44,24 @@ BONUS_NAME := checker
 
 bonus : $(BONUS_NAME)
 
-$(BONUS_NAME) :
+$(BONUS_NAME) : $(OBJS_BONUS)
 	$(MAKE) -C libft/ all
 	$(MAKE) -C bonus/get_next_line/ all
-	@$(CC) $(CFLAGS) $(SRCS_BONUS) bonus/get_next_line/get_next_line.a libft/libft.a -o checker
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) bonus/get_next_line/get_next_line.a libft/libft.a -o checker
 
-$(NAME) :
+$(NAME) : $(OBJS)
 	$(MAKE) -C ./libft/ all
-	$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o push_swap
+	$(CC) $(CFLAGS) $(OBJS) libft/libft.a -o push_swap
 
 re : fclean all
 
 clean :
 	rm -f *.o
+	rm -f bonus/*.o
+	rm -f mandatory/*.o
 	rm -f libft/*.o
 	rm -f bonus/get_next_line/*.o
+
 
 fclean : clean
 	rm -f $(NAME)

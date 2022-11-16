@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:30:26 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/09 21:43:42 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:21:01 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	main(int argc, char **argv)
 {
 	t_info	*info;
 
+	if (argc == 1)
+		return (0);
 	info = init_info(argc, argv);
 	if (check_valid_num(&info))
 	{
