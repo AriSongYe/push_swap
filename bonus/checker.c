@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:10:54 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 22:04:33 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:00:39 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,4 @@ int	main(int argc, char **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	system("leaks checker");
 }
