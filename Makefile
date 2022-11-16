@@ -6,7 +6,7 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/11/16 14:28:26 by yecsong          ###   ########.fr        #
+#    Updated: 2022/11/16 15:10:49 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ bonus : $(BONUS_NAME)
 $(BONUS_NAME) :
 	$(MAKE) -C libft/ all
 	$(MAKE) -C bonus/get_next_line/ all
-	@$(CC) $(CFLAGS) $(SRCS_BONUS) bonus/get_next_line/get_next_line.a ../libft/libft.a -o checker
+	@$(CC) $(CFLAGS) $(SRCS_BONUS) bonus/get_next_line/get_next_line.a libft/libft.a -o checker
 
 $(NAME) :
 	$(MAKE) -C ./libft/ all
