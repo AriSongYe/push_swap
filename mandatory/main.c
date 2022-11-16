@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:30:26 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 20:19:35 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/09 21:43:42 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	a_to_b_2(t_info **info, int *size, int *i, int chunk)
 {
-	if ((*info)->a->value > (*i) && \
-			(*info)->a->value <= (*i) + chunk)
+	if ((*info)->a->value > (*i) && (*info)->a->value <= (*i) + chunk)
 	{
 		pb(info);
 		rb(info);
@@ -97,7 +96,4 @@ int	main(int argc, char **argv)
 		a_to_b(&info);
 		b_to_a(&info);
 	}
-	t_node	*node;
-	node = info->a;
 }
-
