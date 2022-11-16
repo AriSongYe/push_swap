@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:14:18 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/02 16:20:31 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/16 14:46:42 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,11 @@ void	num_5(t_info **info)
 		ra(info);
 	pb(info);
 	small = find_small_num(info);
-	while ((*info)->a->value != small)
-		ra(info);
+	if (last_node((*info)->a)->value == small)
+		rra(info);
+	else
+		while ((*info)->a->value != small)
+			ra(info);
 	pb(info);
 	num_3(info, 2);
 	if ((*info)->b->value < (*info)->b->next->value)

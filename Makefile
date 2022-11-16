@@ -6,7 +6,7 @@
 #    By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 17:24:01 by yecsong           #+#    #+#              #
-#    Updated: 2022/11/16 14:25:45 by yecsong          ###   ########.fr        #
+#    Updated: 2022/11/16 14:28:26 by yecsong          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ CFLAGS := -Wall -Werror -Wextra
 
 all : $(NAME)
 
-BONUS_NAME : checker
+BONUS_NAME := checker
 
 bonus : $(BONUS_NAME)
 
@@ -59,6 +59,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
+	rm -f $(BONUS_NAME)
 	rm -f libft/libft.a
 	rm -f bonus/get_next_line/get_next_line.a
 
