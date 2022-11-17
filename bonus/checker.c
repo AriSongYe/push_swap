@@ -6,7 +6,7 @@
 /*   By: yecsong <yecsong@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:10:54 by yecsong           #+#    #+#             */
-/*   Updated: 2022/11/16 17:19:36 by yecsong          ###   ########.fr       */
+/*   Updated: 2022/11/17 17:00:20 by yecsong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int	main(int argc, char **argv)
 {
 	t_info	*info;
 
+	if (argc == 1)
+		return (0);
 	info = init_info(argc, argv);
 	if (check_valid_num(&info))
 	{
 		write(2, "Error\n", 6);
 		return (-1);
 	}
-	if (info->stack_size < 2)
-		return (0);
 	init_node(&info, info->order);
 	if (read_inst(&info))
 		return (-1);
