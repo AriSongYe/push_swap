@@ -10,7 +10,7 @@ optimized data sorting.
 적절한 알고리즘을 사용하여 data를 오름차순으로 정렬하는 과제이다.
 
 ## 필요개념
-Stack, Queue, Deque 
+Stack, Queue, Deque, [모래시계 알고리즘](https://www.notion.so/push_swap-b0df9069613840519465222af89794a1?pvs=4)
 
 <aside>
 💡 본 과제는 2개의 stack을 사용한다고 하지만
